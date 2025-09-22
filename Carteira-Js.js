@@ -17,4 +17,5 @@ function atualizarDataHora() {
 // Atualiza assim que abrir
 atualizarDataHora();
 // E mantém em tempo real
-setInterval(atualizarDataHora, 1000);
+//setInterval(atualizarDataHora, 1000);
+
