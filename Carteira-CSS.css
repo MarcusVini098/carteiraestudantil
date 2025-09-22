@@ -1,70 +1,111 @@
+:root{
+  --vinho: #800020;
+  --bg: #f8f8f8;
+  --card-max-width: 350px;
+  --card-radius: 15px;
+}
+
+/* box-sizing universal */
+* { box-sizing: border-box; }
+
+html { font-size: 16px; } /* base para rems */
 body {
   font-family: Arial, sans-serif;
-  background: #f8f8f8;
+  background: var(--bg);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   margin: 0;
+  padding: 16px; /* evita colar na borda em telas pequenas */
 }
 
 .card {
-  width: 350px;
+  /* largura fluida: nunca menor que 280px, usa 90% do viewport, máximo 350px */
+  width: clamp(280px, 90%, var(--card-max-width));
   background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border-radius: var(--card-radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
   overflow: hidden;
 }
 
 .header {
-  background: #800020; /* vinho */
-  padding: 15px;
+  background: var(--vinho);
+  padding: 1rem;
   text-align: center;
   color: #fff;
 }
 
+.Logo {
+  width: 150px;   /* define largura */
+  height: auto;   /* mantém proporção */
+}
+
 .header h2 {
   margin: 0;
-  font-size: 24px;
+  font-size: 1.25rem; /* 20px */
 }
 
 .header small {
   display: block;
-  margin-top: 5px;
-  font-size: 12px;
+  margin-top: .25rem;
+  font-size: .75rem;
 }
 
 .foto {
   display: flex;
   justify-content: center;
-  padding: 15px;
+  padding: 1rem;
 }
 
 .foto img {
-  width: 120px;
-  height: 150px;
+  /* imagem responsiva: mínimo 90px, máximo 120px, escala com viewport */
+  width: clamp(90px, 28vw, 120px);
+  height: auto;
+  aspect-ratio: 4/5;
   object-fit: cover;
   border-radius: 10px;
 }
 
 .info {
-  padding: 15px;
-  font-size: 14px;
+  padding: 1rem;
+  font-size: 0.95rem;
 }
 
 .info p {
-  margin: 6px 0;
+  margin: .4rem 0;
+  word-break: break-word;
 }
 
 .footer {
-  background: #800020;
+  background: var(--vinho);
   color: #fff;
   text-align: center;
-  padding: 12px;
-  font-size: 14px;
+  padding: .9rem;
+  font-size: 0.95rem;
 }
 
-.footer strong {
-  display: block;
-  margin-bottom: 5px;
+.footer strong { display: block; margin-bottom: .25rem; }
+
+/* Ajustes para telas bem pequenas */
+@media (max-width: 420px){
+  .header h2 { font-size: 1.125rem; }
+  .info { padding: .75rem; font-size: .9rem; }
+  .footer { padding: .7rem; font-size: .9rem; }
+  .foto img { width: clamp(80px, 30vw, 110px); }
+}
+
+/* Opcional: em telas maiores, você pode usar grid para dispor foto+info lado a lado */
+@media (min-width: 700px){
+  .card {
+    width: var(--card-max-width);
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 0;
+  }
+  .header { grid-column: 1 / -1; }
+  .foto { grid-row: 2; align-self: start; padding: 1rem; }
+  .info { grid-row: 2; padding: 1rem; }
+  .footer { grid-column: 1 / -1; }
 }
