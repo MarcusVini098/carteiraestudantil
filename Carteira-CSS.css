@@ -38,7 +38,7 @@ body {
 
 
 .logo {
-  width: 150px;   /* define largura */
+  width: 100px;   /* define largura */
   height: auto;   /* mantém proporção */
 }
 
@@ -110,4 +110,5 @@ body {
   .info { grid-row: 2; padding: 1rem; }
   .footer { grid-column: 1 / -1; }
 }
+
 
